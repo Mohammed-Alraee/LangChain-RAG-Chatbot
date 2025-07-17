@@ -1,17 +1,17 @@
 import os
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from transformers import pipeline
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
 
 #steps 1: Load the PDF document
-loader = PyPDFLoader("Data/example.pdf")
+loader = PyPDFLoader("Data/INVOICE.pdf")
 documents = loader.load()
 
 #step 2: split the documents into smaller chunks
-splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+splitter = RecursiveCharacterTextSplitter(chunk_size=50, chunk_overlap=10)
 
 chunks = splitter.split_documents(documents)
 
